@@ -26,10 +26,10 @@ export class CoffeeShop extends Entity {
 
   // To specify CoffeeShop `hasMany` reviews,
   // use the `@hasMany` decorator
-  @hasMany(() => Review)
+  @hasMany(() => Review, {})
   reviews?: Review[];
 
-  @hasOne(() => Income)
+  @hasOne(() => Income, {})
   income: Income;
 
   constructor(data?: Partial<CoffeeShop>) {

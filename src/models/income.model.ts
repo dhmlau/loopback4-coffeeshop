@@ -1,5 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
-
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {CoffeeShop} from './coffee-shop.model';
 @model()
 export class Income extends Entity {
   //QUESTION: can i make `year` and `month` to be the composite id?
@@ -18,6 +18,7 @@ export class Income extends Entity {
 
   @property({
     type: 'number',
+    required: true,
   })
   month: number;
 
@@ -26,6 +27,9 @@ export class Income extends Entity {
     required: true,
   })
   revenue: number;
+
+  @belongsTo(() => CoffeeShop)
+  coffeeShopId: number;
 
   constructor(data?: Partial<Income>) {
     super(data);
