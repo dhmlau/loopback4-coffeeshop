@@ -1,6 +1,6 @@
-import {repository, Filter} from '@loopback/repository';
+import {repository, Filter, Where, Count} from '@loopback/repository';
 import {CoffeeShopRepository} from '../repositories';
-import {param, requestBody, post, get} from '@loopback/rest';
+import {param, requestBody, post, get, del} from '@loopback/rest';
 import {Review} from '../models';
 
 // Uncomment these imports to begin using these cool features!
@@ -53,5 +53,30 @@ export class CoffeeShopReviewController {
     return await this.coffeeShopRepo
       .reviews(coffeeShopId)
       .find(filter, {strictObjectIDCoercion: true});
+  }
+  @del('/coffee-shops/{coffeeShopId}/reviews', {
+    responses: {
+      '200': {
+        description: 'CoffeeShop.Review DELETE success count',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                count: 'number',
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+  async deleteReviews(
+    @param.path.number('coffeeShopId') coffeeShopId: number,
+    @param.path.string('where') where?: Where,
+  ): Promise<Count> {
+    return await this.coffeeShopRepo
+      .reviews(coffeeShopId)
+      .delete(where, {strictObjectIDCoercion: true});
   }
 }
