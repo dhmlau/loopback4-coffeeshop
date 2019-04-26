@@ -1,4 +1,4 @@
-# pg_dump -U root -h localhost playground
+# pg_dump -U root -h localhost playground2
 --
 -- PostgreSQL database dump
 --

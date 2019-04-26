@@ -25,7 +25,7 @@ A coffee shop can have multiple reviews. As illustrated in the diagram below, th
 1. Create the models and model relations
 
 - when `lb4 relation` is ready, it should be even easier
-- TODO: there might be steps needed which are documented in https://github.com/strongloop/loopback-next/pull/2448
+- modify `@model` decorator in the [Review](src/models/review.model.ts) and [Income](src/models/income.model.ts) which are documented in https://github.com/strongloop/loopback-next/pull/2448
 
 2. Use `automigrate` feature to create the database
 
@@ -102,3 +102,5 @@ For `coffeeShopId` is `2`
   "comments": "long lineup all the time"
 }
 ```
+
+To verify, call GET /coffee-shops/{coffeeShopId}/reviews
