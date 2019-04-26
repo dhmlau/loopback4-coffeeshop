@@ -8,7 +8,7 @@ import {CoffeeShop} from './coffee-shop.model';
         name: 'fk_review_coffeeShopId',
         entity: 'CoffeeShop',
         entityKey: 'id',
-        foreignKey: 'coffeeshopid',
+        foreignKey: 'coffeeShopId',
       },
     },
   },
@@ -37,19 +37,6 @@ export class Review extends Entity {
     required: true,
   })
   comments: string;
-
-  // Note:
-  // `coffeeShopId` is the default name expected
-  // in the format of {model-name-in-camel-case}Id
-  // If your column name is something else,
-  // use `keyFrom` to specify the database column name
-  // See https://loopback.io/doc/en/lb4/BelongsTo-relation.html#defining-a-belongsto-relation
-  // TO BE VERIFIED
-  // @belongsTo(() => CoffeeShop, {
-  //   keyFrom: 'coffeeshopid123',
-  //   keyTo: 'id',
-  //   name: 'coffeeshop',
-  // })
 
   @belongsTo(() => CoffeeShop)
   coffeeShopId: number;

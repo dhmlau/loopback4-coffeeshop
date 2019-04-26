@@ -26,7 +26,13 @@ export class CoffeeShop extends Entity {
 
   // To specify CoffeeShop `hasMany` reviews,
   // use the `@hasMany` decorator
-  @hasMany(() => Review, {})
+  // Note: By default, the expected foreign key name is {model-name}+Id
+  // in camel case, i.e. `coffeeShopId` in this case.
+  // If you want to specify a different name in the database,
+  // use `{keyTo: 'new-fk-name'}`.
+  // As a result, it would look like:
+  // @hasMany(() => Review, {keyTo: 'new-foreign-key-name'})
+  @hasMany(() => Review)
   reviews?: Review[];
 
   @hasOne(() => Income, {})
