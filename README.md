@@ -1,6 +1,10 @@
 # LoopBack4 CoffeeShop
 
+[![LoopBack](<https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png>)](http://loopback.io/)
+
 ![coffee shop](aroma-art-beverage-1251175.jpg)
+
+_Photo Credits: https://www.pexels.com/photo/six-white-ceramic-mugs-1251175/_
 
 _Working in progress_
 
@@ -21,10 +25,16 @@ A coffee shop can have multiple reviews. As illustrated in the diagram below, th
 1. Create the models and model relations
 
 - when `lb4 relation` is ready, it should be even easier
+- TODO: there might be steps needed which are documented in https://github.com/strongloop/loopback-next/pull/2448
 
-2. use `automigrate` feature to create the database
+2. Use `automigrate` feature to create the database
 
-3. Create `CoffeeShopReviewController`
+- order of database tables are important. Modify [database migration script](src/migrate.ts).
+- run `npm run migrate`
+
+3. Modify [CoffeeShopRepository](src/repositories/coffee-shop.repository.ts) to be able to access the ReviewRepository
+
+4. Create [`CoffeeShopReviewController`](src/controllers/coffee-shop-review-controller.ts)
    This is used to do the CRUD operations for reviews related to the coffee shop.
 
 ## User flow 2: From database > models
@@ -36,7 +46,7 @@ Use `lb4 discover` to discover the models.
 Run `npm start`.
 Go to `localhost:3000/explorer`.
 
-Create some coffee shops
+1. Create some coffee shops - POST /coffee-shops
 
 ```json
 {
@@ -45,17 +55,50 @@ Create some coffee shops
 }
 ```
 
-Create review
-
-```
+```json
 {
-  "date": "2019-04-12T19:08:37.956Z",
-  "rating": 4,
-  "comments": "great service",
-  "coffeeShopId": 1
+  "name": "My NYC shop",
+  "city": "New York City"
 }
 ```
 
-[![LoopBack](<https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png>)](http://loopback.io/)
+To verify it is working, call GET /coffee-shops
 
-Photo Credits: https://www.pexels.com/photo/six-white-ceramic-mugs-1251175/
+```json
+[
+  {
+    "id": 1,
+    "name": "My Toronto shop",
+    "city": "Toronto"
+  },
+  {
+    "id": 2,
+    "name": "My NYC shop",
+    "city": "New York City"
+  }
+]
+```
+
+2. Create some reviews for particular shops - POST `/coffee-shops/{coffeeshopId}/review
+
+Specify the `coffeeShopId` as the parameter
+
+For `coffeeShopId` is `1`
+
+```json
+{
+  "date": "2019-04-26T14:58:15.638Z",
+  "rating": 4,
+  "comments": "good service"
+}
+```
+
+For `coffeeShopId` is `2`
+
+```json
+{
+  "date": "2019-04-26T14:58:15.638Z",
+  "rating": 2,
+  "comments": "long lineup all the time"
+}
+```

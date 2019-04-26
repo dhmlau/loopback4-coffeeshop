@@ -6,19 +6,15 @@ export async function migrate(args: string[]) {
 
   const app = new Loopback4CoffeeshopApplication();
   await app.boot();
-  await app.migrateSchema({existingSchema});
-  // Note: To migrate a particular model, use the following snippet
-  //----- migrate schema for CoffeeShop -------
-  // await app.migrateSchema({
-  //   existingSchema: existingSchema,
-  //   models: ['CoffeeShop'],
-  // });
 
-  //----- migrate schema for Review and Income -------
-  // await app.migrateSchema({
-  //   existingSchema: existingSchema,
-  //   models: ['Review', 'Income'],
-  // });
+  // Note: The order of the database tables creation is important,
+  // because we need to have `CoffeeShop` table created first
+  // in order to add the foreign key constraints.
+  // await app.migrateSchema({existingSchema});
+  await app.migrateSchema({
+    existingSchema: existingSchema,
+    models: ['CoffeeShop', 'Review', 'Income'],
+  });
 
   // Connectors usually keep a pool of opened connections,
   // this keeps the process running even after all work is done.

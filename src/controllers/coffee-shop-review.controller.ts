@@ -6,8 +6,11 @@ import {Review} from '../models';
 // Uncomment these imports to begin using these cool features!
 
 // import {inject} from '@loopback/context';
-// Referencing code from `UserOrderController`
-// in https://github.com/strongloop/loopback4-example-shopping/blob/master/src/controllers/user-order.controller.ts
+/**
+ * Note:
+ * Referencing code from `UserOrderController` in
+ * https://github.com/strongloop/loopback4-example-shopping/blob/master/packages/src/controllers/user-order.controller.ts
+ */
 export class CoffeeShopReviewController {
   constructor(
     @repository(CoffeeShopRepository)
