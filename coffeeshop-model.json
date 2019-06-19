@@ -1,0 +1,19 @@
+{
+  "name": "CoffeeShop",
+  "base": "Entity",
+  "properties": {
+      "id": {
+          "type": "number",
+          "id": true,
+          "generated": true
+      },
+      "name": {
+          "type": "string",
+          "required": true
+      },
+      "city": {
+        "type": "string",
+        "required": true
+      }
+  }
+}

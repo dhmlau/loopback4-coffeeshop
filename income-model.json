@@ -1,0 +1,23 @@
+{
+  "name": "Income",
+  "base": "Entity",
+  "properties": {
+      "incomeId": {
+          "type": "number",
+          "id": true,
+          "generated": true
+      },
+      "year": {
+          "type": "number",
+          "required": true
+      },
+      "month": {
+        "type": "number",
+        "required": true
+      },
+      "revenue": {
+        "type": "number",
+        "required": true
+      }
+  }
+}

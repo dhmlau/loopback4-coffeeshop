@@ -1,0 +1,23 @@
+{
+  "name": "Review",
+  "base": "Entity",
+  "properties": {
+      "reviewId": {
+          "type": "number",
+          "id": true,
+          "generated": true
+      },
+      "date": {
+          "type": "date",
+          "required": false
+      },
+      "rating": {
+        "type": "number",
+        "required": false
+      },
+      "comments": {
+        "type": "string",
+        "required": true
+      }
+  }
+}

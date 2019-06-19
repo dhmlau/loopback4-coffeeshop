@@ -20,6 +20,21 @@ A coffee shop can have multiple reviews. As illustrated in the diagram below, th
 
 ![LoopBack4 CoffeeShop models](loopback-coffeeshop-models.png)
 
+## Objectives
+
+In this repo, I'd like to show you how I create this CoffeeShop app step-by-step and add my findings along the way regarding model relations.
+This CoffeeShop app is inspired by [CoffeeShop Review app](https://loopback.io/doc/en/lb3/Introducing-the-Coffee-Shop-Reviews-app.html) in LoopBack 3.
+
+## Step 1: Create basic models
+
+Create the `CoffeeShop`, `Review` and `Income` models mentioned above.
+
+1. Scaffold a LoopBack4 application using `lb4 app` command.
+   Tips: If you know you're going to accept all default, you can use the `--yes` option, i.e. `lb4 app your-app-name --yes`. It will save you a few keystrokes of accepting the defaults.
+
+2. You can create the models using the `lb4 model` command.
+   To save you some time, I've created the corresponding json for the 3 models: [coffeeshop-model.json](coffeeshop-model.json)
+
 ## User flow 1: From models > Database
 
 1. Create the models and model relations
