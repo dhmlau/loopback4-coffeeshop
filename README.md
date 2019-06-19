@@ -30,10 +30,52 @@ This CoffeeShop app is inspired by [CoffeeShop Review app](https://loopback.io/d
 Create the `CoffeeShop`, `Review` and `Income` models mentioned above.
 
 1. Scaffold a LoopBack4 application using `lb4 app` command.
-   Tips: If you know you're going to accept all default, you can use the `--yes` option, i.e. `lb4 app your-app-name --yes`. It will save you a few keystrokes of accepting the defaults.
+   _Tips_: If you know you're going to accept all default, you can use the `--yes` option, i.e. `lb4 app your-app-name --yes`. It will save you a few keystrokes of accepting the defaults.
 
 2. You can create the models using the `lb4 model` command.
    To save you some time, I've created the corresponding json for the 3 models: [coffeeshop-model.json](coffeeshop-model.json)
+
+```sh
+$ lb4 model coffeeshop-model.json --yes
+$ lb4 model review-model.json --yes
+$ lb4 model income-model.json --yes
+```
+
+## Step 2: Create the DataSource and Repositories
+
+Before we can run the relation CLI, we need to have the Repositories created.
+
+Create the datasource and repositories using `lb4 datasource` and `lb4 repository` command.
+
+## Step 3: Add `hasMany` relation for CoffeeShop and Review model using CLI
+
+```sh
+$ lb4 relation
+? Please select the relation type hasMany
+? Please select source model CoffeeShop
+? Please select target model Review
+? Foreign key name to define on the target model coffeeShopId
+? Source property name for the relation getter reviews
+   create src/controllers/coffee-shop-review.controller.ts
+
+Relation HasMany was created in src/
+```
+
+---
+
+_Model Relation Explained_
+
+What the command does are:
+
+1. In the `CoffeeShop` model, it adds the `reviews` property with the `@hasMany` decorator
+2. In the `Review` model, it adds the `coffeeShopId` property.
+3. CoffeeShopReviewController is created for CRUD operations on reviews of a specified coffee shop.
+
+If you only need to navigate from `CoffeeShop` to `Review` but not the other way round, you can stop here and no need to add the `belongsTo` relation.
+
+---
+
+## Step 4: Add `belongsTo` relation for Review and CoffeeShop model using CLI
 
 ## User flow 1: From models > Database
 
